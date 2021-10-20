@@ -15,8 +15,6 @@ public class AddControl extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
 		String name = req.getParameter("name");
 		String image = req.getParameter("image");
 		String pricenew = req.getParameter("pricenew");
@@ -28,7 +26,7 @@ public class AddControl extends HttpServlet {
 
 		dao.addProduct(name, image, pricenew, pricelast, description, category);
 
-		resp.sendRedirect("views/ManageProduct.jsp");
+		resp.sendRedirect("manager");
 		
 //		req.getRequestDispatcher("views/ManageProduct.jsp").forward(req, resp);
 
