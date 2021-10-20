@@ -35,20 +35,6 @@ $(document).ready(() => {
   const prevSuggest = $(".prev-suggest-btn");
   const nextSuggest = $(".next-suggest-btn");
 
-  // click hiden show cart
-  const iconCart = $(".header__group-cart-icon");
-  const iconMobiCart = $(".navbar__mobile-cart");
-  const blockCart = $(".header__group-yes-cart");
-
-  iconCart.click(() => {
-    addClass(blockCart, active);
-    addClass(overlay, active);
-  });
-
-  iconMobiCart.click(() => {
-    addClass(blockCart, active);
-    addClass(overlay, active);
-  });
 
   // menu btn click hiden show mobile and tablet
   navCategory.click(() => {
@@ -59,13 +45,11 @@ $(document).ready(() => {
   iconExit.click(() => {
     removeClass(navList, active);
     removeClass(overlay, active);
-    removeClass(blockCart, active);
   });
 
   overlay.click(() => {
     removeClass(navList, active);
     removeClass(overlay, active);
-    removeClass(blockCart, active);
   });
 
   // section products

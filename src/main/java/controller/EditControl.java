@@ -21,14 +21,10 @@ public class EditControl extends HttpServlet {
 		String pricelast = req.getParameter("pricelast");
 		String description = req.getParameter("description");
 		String category = req.getParameter("category");
-		String id = req.getParameter("id");
+		String pid = req.getParameter("id");
 		
 		DAO dao = new DAO();
-		dao.editProduct(name, image, pricenew, pricelast, description, category, id);
+		dao.editProduct(name, image, pricenew, pricelast, description, category, pid);
 		resp.sendRedirect("manager");
-		
-		
-		
-		
 	}
 }

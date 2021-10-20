@@ -79,30 +79,7 @@
                             </svg>
                             <span class="header__group-noti">0</span>
                         </div>
-                        <!--! Header cart buy -->
-                        <div class="header__group-yes-cart">
-                            <div class="header__group-yes-cart-title">
-                                <h3>Giỏ hàng của bạn:</h3>
-                                <div class="icon-exit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-x-lg" viewBox="0 0 16 16">
-                                        <path
-                                            d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <ul class="product__cart"></ul>
-                            <div class="product__footer">
-                                <div class="product__footer-sum">
-                                    <span>Tổng tiền:</span>
-                                    <span class="d-flex">
-                                        <p class="total-pay"></p>
-                                    </span>
-                                </div>
-                                <button class="product__footer-btn-payment">Thanh Toán</button>
-                            </div>
-                        </div>
-                    </div>
+                    </div>    
                     <div class="header__group-compare">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-shuffle" viewBox="0 0 16 16">
@@ -406,8 +383,20 @@
                         alt="phone">
                     <div class="header__user-login-content">
                         <p>Xin chào!</p>
-                        <button type="button" class="btn btn-login-user" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Đăng nhập</button>
+                        <div class="user__info">
+                    		<c:if test="${sessionScrope.acc != null}">
+                         	<a href="#" class="user__info-title">${sessionScrope.acc.getUsername()}</a>                               		
+                    		</c:if>
+	                        <c:if test="${sessionScrope.acc == null}">
+	                         	<a href="login" class="">Đăng nhập</a>
+	                        </c:if>
+	                        <ul class="user__info-body">
+	                             <li class="user__info-body-item">
+	                                 <a href="#">Thông tin người dùng</a>
+	                                 <a href="login">Đăng xuất</a>
+	                             </li>
+	                        </ul>
+	                     </div>
                     </div>
                 </div>
             </div>
