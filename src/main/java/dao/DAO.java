@@ -339,18 +339,41 @@ public class DAO {
 			// TODO: handle exception
 		}
 	}
+	
+	public void editProduct(String name, String image, String pricenew, String pricelast,
+			String description, String category, String pid) {
+		String query = "update products\n"
+				+ "set name = ?,\n"
+				+ "imgSrc = ?,\n"
+				+ "priceNew = ?,\n"
+				+ "priceLast = ?,\n"
+				+ "descriptions = ?,\n"
+				+ "category_Id = ?\n"
+				+ "where id = ?";
+		
+		try {
+			conn = new DBContext().getConnection(); // open connect mySql
+			ps = conn.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, image);
+			ps.setString(3, pricenew);
+			ps.setString(4, pricelast);
+			ps.setString(5, description);
+			ps.setString(6, category);
+			ps.setString(7, pid);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	
 
 	
 
 	public static void main(String[] args) {
-//		DAO dao = new DAO();
-//		List<Product> list = dao.loginAcc("điện thoại");
-//
-//		for (Product p : list) {
-//			System.out.println(p);
-//		}
-
-//		dao.addProduct("123", "123", "546", "789", "12", "67890");
+		DAO dao = new DAO();
+		dao.editProduct("abc", "abc", "123", "321", "oke", "1", "3");
 	}
 
 }

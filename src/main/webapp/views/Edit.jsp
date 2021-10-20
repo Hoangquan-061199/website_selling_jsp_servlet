@@ -30,45 +30,47 @@
     <body>
    		
         <div class="modal-content container">
-        	<form action="add" method="post">
+        	<form action="editProduct" method="post">
                  <div class="modal-header">						
                      <h4 class="modal-title">Chỉnh sửa sản phẩm</h4>
-                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                  </div>
-                 <div class="modal-body">					
+                 <div class="modal-body">
+                 	<div class="form-group">
+                         <label>Name</label>
+                         <input value="${detail.id}" name="id" type="text" readonly class="form-control" required>
+                     </div>					
                      <div class="form-group">
                          <label>Name</label>
-                         <input name="name" type="text" class="form-control" required>
+                         <input value="${detail.name}" name="name" type="text" class="form-control" required>
                      </div>
                      <div class="form-group">
                          <label>Image</label>
-                         <input name="image" type="text" class="form-control" required>
+                         <input value="${detail.imgSrc}" name="image" type="text" class="form-control" required>
                      </div>
                      <div class="form-group">
                          <label>Price new</label>
-                         <input name="pricenew" type="text" class="form-control" required>
+                         <input value="${detail.priceNew}" name="pricenew" type="text" class="form-control" required>
                      </div>
                      <div class="form-group">
                          <label>Price last</label>
-                         <input name="pricelast" type="text" class="form-control">
+                         <input value="${detail.priceLast}" name="pricelast" type="text" class="form-control">
                      </div>
                      <div class="form-group">
                          <label>Description</label>
-                         <textarea name="description" class="form-control" required></textarea>
+                         <textarea name="description" class="form-control" required>${detail.description}</textarea>
                      </div>
                      <div class="form-group">
                          <label>Category</label>
                          <select name="category" class="form-select" aria-label="Default select example">
                              <c:forEach items="${listAllCategory}" var="list">
-                                 <option value="<c:out value="${list.getId()}"/>"><c:out value="${list.getName()}"/></option>
+                                 <option >${list.name}</option>
                              </c:forEach>
                          </select>
                      </div>
 
                  </div>
                  <div class="modal-footer">
-                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                     <input type="submit" class="btn btn-success" value="Add">
+                     <input type="submit" class="btn btn-success" value="Edit">
                  </div>
              </form>    
         </div>
