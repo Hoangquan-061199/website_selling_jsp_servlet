@@ -5,9 +5,9 @@ public class OrderDetail {
 	private int order_id;
 	private int product_id;
 	private int quantity;
-	private double price;
+	private int price;
 
-	public OrderDetail(int id, int order_id, int product_id, int quantity, double price) {
+	public OrderDetail(int id, int order_id, int product_id, int quantity, int price) {
 		this.id = id;
 		this.order_id = order_id;
 		this.product_id = product_id;
@@ -15,7 +15,7 @@ public class OrderDetail {
 		this.price = price;
 	}
 	
-	public OrderDetail(int order_id, int product_id, int quantity, double price) {
+	public OrderDetail(int order_id, int product_id, int quantity, int price) {
 		this.order_id = order_id;
 		this.product_id = product_id;
 		this.quantity = quantity;
@@ -54,11 +54,11 @@ public class OrderDetail {
 		this.quantity = quantity;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

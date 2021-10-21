@@ -11,12 +11,11 @@
     <title>Home</title>
     <link rel="icon" href="http://bizweb.dktcdn.net/100/429/689/themes/825316/assets/favicon.png?1634026773707">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style><%@include file="/views/assets/css/style.css"%></style>
     <style><%@include file="/views/assets/css/responsive.css"%></style>
 </head>
@@ -195,14 +194,14 @@
                 <div class="section__products-content-phone">
                 	<c:forEach items="${listPhone}" var="phone">
                 	<div class="item__product">
-			        	<img src="<c:out value="${phone.getImgSrc()}"/>" alt="">
-			        	<span class="item__product-name"><a href="detail?pid=${phone.getId()}"><c:out value="${phone.getName()}"/></a></span>
+			        	<img src="${phone.imgSrc}" alt="">
+			        	<span class="item__product-name"><a href="detail?pid=${phone.id}">${phone.name}</a></span>
 			        	<div class="product-price">
 			            	<p class="item__product-buys-new">
-			               	 	<c:out value="${phone.getPriceNew()}"/>
+			               	 	${ phone.priceNew } <span> VNĐ</span>
 			            	</p>
 			            	<p class="item__product-buys-last">
-			               		<c:out value="${phone.getPriceLast()}"/>
+			               		${phone.priceLast} <span> VNĐ</span>
 			            	</p>
 			        	</div>
 			        	<form action="/ProductManage/cart/add-to-cart" method="post">
@@ -263,18 +262,18 @@
                 <div class="section__products-content-style">
                 	<c:forEach items="${listFashion}" var="fashion">
                 	<div class="item__product">
-          				<img src="<c:out value="${fashion.getImgSrc()}"/>" alt="">
-          				<span class="item__product-name"><a href="detail?pid=${fashion.getId()}"><c:out value="${fashion.getName()}"/></a></span>
+          				<img src="${fashion.imgSrc}" alt="">
+          				<span class="item__product-name"><a href="detail?pid=${fashion.id}">${fashion.name}</a></span>
           				<div class="product-price">
 			            	<p class="item__product-buys-new">
-			                 	<c:out value="${fashion.getPriceNew()}"/>
+			                 	${fashion.priceNew} <span> VNĐ</span>
 			              	</p>
 				            <p class="item__product-buys-last">
-				                <c:out value="${fashion.getPriceLast()}"/>
+				                ${fashion.priceLast} <span> VNĐ</span>
 				            </p>
           				</div>
           				<form action="/ProductManage/cart/add-to-cart" method="post">
-          					<input name="id" type="hidden" value="${ fashion.getId() }"/>
+          					<input name="id" type="hidden" value="${ fashion.id }"/>
 	          				<button class="item__product-cart" title="Thêm vào giỏ hàng">
 				              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 				                  class="bi bi-cart2" viewBox="0 0 16 16">
@@ -331,18 +330,18 @@
                 <div class="section__products-content-appliances">
                 <c:forEach items="${listAppliances}" var="appliances">
                 	<div class="item__product">
-        				<img src="<c:out value="${appliances.getImgSrc()}"/>" alt="">
-        				<span class="item__product-name"><a href="detail?pid=${appliances.getId()}"><c:out value="${appliances.getName()}"/></a></span>
+        				<img src="${appliances.imgSrc}" alt="">
+        				<span class="item__product-name"><a href="detail?pid=${appliances.id}">${appliances.name}</a></span>
 				        <div class="product-price">
 				            <p class="item__product-buys-new">
-				                <c:out value="${appliances.getPriceNew()}"/>
+				                ${appliances.priceNew} <span> VNĐ</span>
 				            </p>
 				            <p class="item__product-buys-last">
-				                <c:out value="${appliances.getPriceLast()}"/>
+				                ${appliances.priceLast} <span> VNĐ</span>
 				            </p>
 				        </div>
 				        <form action="/ProductManage/cart/add-to-cart" method="post">
-				        	<input name="id" type="hidden" value="${ appliances.getId() }"/>
+				        	<input name="id" type="hidden" value="${ appliances.id }"/>
 				        	<button class="item__product-cart" title="Thêm vào giỏ hàng">
 					            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 					                class="bi bi-cart2" viewBox="0 0 16 16">
@@ -448,18 +447,18 @@
                     <div class="row">
                     	<c:forEach items="${listPhone}" var="tech">
                     	<div class="item__product col-lg-3 col-md-4 col-6">
-					        <img src="<c:out value="${tech.getImgSrc()}"/>" alt="">
-					        <span class="item__product-name"><a href="detail?pid=${tech.getId()}"><c:out value="${tech.getName()}"/></a></span>
+					        <img src="${tech.imgSrc}" alt="">
+					        <span class="item__product-name"><a href="detail?pid=${tech.id}">${tech.name}</a></span>
 					        <div class="product-price">
 					            <p class="item__product-buys-new">
-					                <c:out value="${tech.getPriceNew()}"/>
+					                ${tech.priceNew} <span> VNĐ</span>
 					            </p>
 					            <p class="item__product-buys-last">
-					                <c:out value="${tech.getPriceLast()}"/>
+					                ${tech.priceLast} <span> VNĐ</span>
 					            </p>
 					        </div>
 					        <form action="/ProductManage/cart/add-to-cart" method="post">
-					        	<input name="id" type="hidden" value="${ tech.getId() }"/>
+					        	<input name="id" type="hidden" value="${ tech.id }"/>
 					        	<button class="item__product-cart" title="Thêm vào giỏ hàng">
 						            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 						                class="bi bi-cart2" viewBox="0 0 16 16">
@@ -550,18 +549,18 @@
                     <div class="row">
                     	<c:forEach items="${listFashion}" var="fashion">
                     	<div class="item__product col-lg-3 col-md-4 col-6">
-					        <img src="<c:out value="${fashion.getImgSrc()}"/>" alt="">
-					        <span class="item__product-name"><a href="detail?pid=${fashion.getId()}"><c:out value="${fashion.getName()}"/></a></span>
+					        <img src="${fashion.imgSrc}" alt="">
+					        <span class="item__product-name"><a href="detail?pid=${fashion.id}">${fashion.name}</a></span>
 					        <div class="product-price">
 					            <p class="item__product-buys-new">
-					              	<c:out value="${fashion.getPriceNew()}"/>
+					              	${fashion.priceNew} <span> VNĐ</span>
 					            </p>
 					            <p class="item__product-buys-last">
-					              	<c:out value="${fashion.getPriceLast()}"/>
+					              	${fashion.priceLast} <span> VNĐ</span>
 					            </p>
 					        </div>
 				          	<form action="/ProductManage/cart/add-to-cart" method="post">
-				          		<input name="id" type="hidden" value="${ fashion.getId() }"/>
+				          		<input name="id" type="hidden" value="${ fashion.id }"/>
 				          		<button class="item__product-cart" title="Thêm vào giỏ hàng">
 				              	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 				                  class="bi bi-cart2" viewBox="0 0 16 16">
@@ -623,18 +622,18 @@
             <div class="section__suggest-products">
             	<c:forEach items="${listSuggestToday}" var="sugproduct">
             	<div class="item__product">
-			        <img src="<c:out value="${sugproduct.getImgSrc()}"/>" alt="">
-			        <span class="item__product-name"><a href="detail?pid=${sugproduct.getId()}"><c:out value="${sugproduct.getName()}"/></a></span>
+			        <img src="${sugproduct.imgSrc}" alt="">
+			        <span class="item__product-name"><a href="detail?pid=${sugproduct.id}">${sugproduct.name}</a></span>
 			        <div class="product-price">
 			            <p class="item__product-buys-new">
-			                <c:out value="${sugproduct.getPriceNew()}"/>
+			                ${sugproduct.priceNew} <span> VNĐ</span>
 			            </p>
 			            <p class="item__product-buys-last">
-			                <c:out value="${sugproduct.getPriceLast()}"/>
+			                ${sugproduct.priceLast} <span> VNĐ</span>
 			            </p>
 			        </div>
 			        <form action="/ProductManage/cart/add-to-cart" method="post">
-			        	<input name="id" type="hidden" value="${ sugproduct.getId() }"/>
+			        	<input name="id" type="hidden" value="${ sugproduct.id }"/>
 				        <button class="item__product-cart" title="Thêm vào giỏ hàng">			            	
 				            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 				                class="bi bi-cart2" viewBox="0 0 16 16">
@@ -671,9 +670,9 @@
             <div class="section__newspapper-products row">
             	<c:forEach items="${listNewspappers}" var="newspappers">
             	<div class="item__product col-md-3 col-6">
-		        	<img src="<c:out value="${newspappers.getImgSrc()}"/>" alt="">
-			        <span class="item__product-name"><c:out value="${newspappers.getName()}"/></span>
-			        <div class="item__product-info"><c:out value="${newspappers.getDescription()}"/></div>
+		        	<img src="<c:out value="${newspappers.imgSrc}"/>" alt="">
+			        <span class="item__product-name">${newspappers.name}</span>
+			        <div class="item__product-info">${newspappers.description}</div>
 			        <div class="product-discount">Tin tức</div>
       			</div>
       			</c:forEach>

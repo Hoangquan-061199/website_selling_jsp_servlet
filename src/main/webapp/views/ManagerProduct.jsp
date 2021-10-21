@@ -77,7 +77,7 @@
                                 <td>
                                     <img src="${list.imgSrc}">
                                 </td>
-                                <td>${list.priceNew}</td>
+                                <td>${list.priceNew} <span> VNĐ</span></td>
                                 <td>
                                     <a href="loadproduct?pid=${list.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="#" onclick="showMess(${list.id})" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -136,7 +136,7 @@
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listAllCategory}" var="list">
-                                        <option value="<c:out value="${list.getId()}"/>"><c:out value="${list.getName()}"/></option>
+                                        <option value="<c:out value="${list.id}"/>"><c:out value="${list.name}"/></option>
                                     </c:forEach>
                                 </select>
                             </div>

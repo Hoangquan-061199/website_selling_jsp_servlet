@@ -145,7 +145,7 @@
 								                   		<input name="quantity" class="mb-0 input-quantity" type="number" value="<%= productCart.quantity %>">
 								                   		<input name="id" type="hidden" value="<%= productCart.product.getId() %>">					                        	
 						                        	</div>
-						                   			<div class="col-8 price-new"><%= productCart.product.getPriceNew() %> </div>	
+						                   			<div class="col-8 price-new"><%= String.valueOf(productCart.product.getPriceNew()) %> </div>	
 						                    		</div>
 					                        	</div>
 					                    	<div class="col-3">

@@ -5,9 +5,9 @@ public class Order {
 	private String order_name;
 	private String address;
 	private String phone;
-	private double total;
+	private int total;
 
-	public Order(int id, String order_name, String address, String phone, double total) {
+	public Order(int id, String order_name, String address, String phone, int total) {
 		this.id = id;
 		this.order_name = order_name;
 		this.address = address;
@@ -15,7 +15,7 @@ public class Order {
 		this.total = total;
 	}
 	
-	public Order(String order_name, String address, String phone, double total) {
+	public Order(String order_name, String address, String phone, int total) {
 		this.order_name = order_name;
 		this.address = address;
 		this.phone = phone;
@@ -54,11 +54,11 @@ public class Order {
 		this.phone = phone;
 	}
 
-	public double getTotal() {
+	public int getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(int total) {
 		this.total = total;
 	}
 

@@ -56,16 +56,20 @@ public class Product {
 		this.imgSrc = imgSrc;
 	}
 
-	public  double getPriceNew() {
-		return priceNew;
+	public String getPriceNew() {
+		Locale lc = new Locale("nv","VN");
+		NumberFormat nf = NumberFormat.getInstance(lc);
+		return nf.format(priceNew);
 	}
 
 	public void setPriceNew(double priceNew) {
 		this.priceNew = priceNew;
 	}
 
-	public double getPriceLast() {
-		return priceLast;
+	public String getPriceLast() {
+		Locale lc = new Locale("nv","VN");
+		NumberFormat nf = NumberFormat.getInstance(lc);
+		return nf.format(priceLast);
 	}
 
 	public void setPriceLast(double priceLast) {
@@ -79,7 +83,7 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 //	public static void main(String[] args) {
 //		Locale lc = new Locale("nv","VN");
 //		NumberFormat nFormat = NumberFormat.getInstance(lc);

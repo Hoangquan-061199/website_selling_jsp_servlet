@@ -35,29 +35,29 @@
                     <h3>Danh mục sản phẩm</h3>
                     <ul>
                         <c:forEach items="${listAllCategory}" var="listCategory">
-                       		<li class="category__text"><a href="category?cid=${listCategory.getId()}"><c:out value="${listCategory.getName()}"/></a></li>
+                       		<li class="category__text"><a href="category?cid=${listCategory.id}">${listCategory.name}</a></li>
                     	</c:forEach>
                     </ul>
                 </div>
                 <div class="section__content-porducts col-lg-9 col-12">
                     <div class="section__content-product-body row">
                         <div class="product__body-img col-lg-5 col-12">
-                            <img src="<c:out value="${detail.getImgSrc()}"/>" alt="">
+                            <img src="${detail.imgSrc}" alt="">
                         </div>
                         <div class="product__body-info col-lg-7 col-12">
-                            <div class="product__body-name"><c:out value="${detail.getName()}"/></div>
-                            <div class="product__body-description"><c:out value="${detail.getDescription()}"/></div>
+                            <div class="product__body-name">${detail.name}</div>
+                            <div class="product__body-description">${detail.description}</div>
                             <div class="product__body-price">
                                 <p class="product__body-price-new">
-                                    <c:out value="${detail.getPriceNew()}"/>
+                                    ${detail.priceNew} <span> VNĐ</span>
                                 </p>
                                 <p class="product__body-price-last">
-                                    <c:out value="${detail.getPriceLast()}"/>
+                                    ${detail.priceLast} <span> VNĐ</span>
                                 </p>
                             </div>
                             <form action="/ProductManage/cart/add-to-cart" method="post">
                             	<div class="product__body-btn">
-                            		<input name="id" type="hidden" value="${ detail.getId() }"/>
+                            		<input name="id" type="hidden" value="${ detail.id }"/>
 	                               	<button class="product__body-btn-cart" title="Thêm vào giỏ hàng">
 	                                    Thêm vào giỏ hàng
 	                                </button>
@@ -93,19 +93,19 @@
             <div class="section__suggest-products">
             	<c:forEach items="${listSuggestToday}" var="product">
             	<div class="item__product">
-			        <img src="<c:out value="${product.getImgSrc()}"/>" alt="">
-			        <span class="item__product-name"><a href="detail?pid=${product.getId()}"><c:out value="${product.getName()}"/></a></span>
+			        <img src="${product.imgSrc}" alt="">
+			        <span class="item__product-name"><a href="detail?pid=${product.id}">${product.name}</a></span>
 			        <div class="product-price">
 			            <p class="item__product-buys-new">
-			                <c:out value="${product.getPriceNew()}"/>
+			                ${product.priceNew} <span> VNĐ</span>
 			            </p>
 			            <p class="item__product-buys-last">
-			                <c:out value="${product.getPriceLast()}"/>
+			                ${product.priceLast} <span> VNĐ</span>
 			            </p>
 			        </div>
 			        <form  action="/ProductManage/cart/add-to-cart" method="post">
-			        	<input name="id" type="hidden" value="${ product.getId() }"/>
-			        	<button class="item__product-cart" data-index="<c:out value="${product.getId()}"/>" title="Thêm vào giỏ hàng">
+			        	<input name="id" type="hidden" value="${ product.id }"/>
+			        	<button class="item__product-cart" title="Thêm vào giỏ hàng">
 				            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 				                class="bi bi-cart2" viewBox="0 0 16 16">
 				                <path

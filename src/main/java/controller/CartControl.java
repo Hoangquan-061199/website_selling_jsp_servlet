@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
-
 import dao.DAO;
-import entity.OrderDetail;
 import entity.Product;
 import entity.ProductCart;
 import jakarta.servlet.ServletException;
@@ -35,18 +32,29 @@ public class CartControl extends HttpServlet {
 		switch (action) {
 		case "/":
 			showcart(req, resp);
-			
 			break;
 
+		case "/checkout-success":
+			showCheckOutSuccess(req, resp);
+			break;
+			
 		default:
 			break;
 		}
 		return;
 	}
 	
+	
+	public void showCheckOutSuccess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/views/CheckOutSuccess.jsp").forward(req, resp);
+		return;
+		
+	}
+	
 	private void showcart(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
+		@SuppressWarnings("unchecked")
 		HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
 //		System.out.println("show cart");
 		req.setAttribute("cart", cart);
@@ -89,10 +97,11 @@ public class CartControl extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		
+		@SuppressWarnings("unchecked")
 		HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
 		int total = 0;
 		for(Map.Entry<Integer, ProductCart> entry: cart.entrySet()) {
-			total += entry.getValue().quantity * entry.getValue().product.getPriceNew();
+			total += entry.getValue().quantity * Integer.parseInt(entry.getValue().product.getPriceNew());
 		}
 		
 		DAO dao = new DAO();
@@ -101,11 +110,12 @@ public class CartControl extends HttpServlet {
 		for(Map.Entry<Integer, ProductCart> productCart: cart.entrySet()) {
 			int pId = productCart.getValue().product.getId();
 			int pQuantity = productCart.getValue().quantity;
-			double pPrice = Double.valueOf(productCart.getValue().quantity) * productCart.getValue().product.getPriceNew();
-			
-			DAO dao1 = new DAO();
-			dao1.addOrderDetail(orderId, pId, pQuantity, pPrice);
+			int pPrice = productCart.getValue().quantity * Integer.parseInt(productCart.getValue().product.getPriceNew());
+			dao.addOrderDetail(orderId, pId, pQuantity, pPrice);
 		}
+		session.setAttribute("cart", null);
+		
+		resp.sendRedirect("/ProductManage/checkout-success");
 	}
 	
 
@@ -122,6 +132,7 @@ public class CartControl extends HttpServlet {
 		ProductCart productCart;
 		
 
+		@SuppressWarnings("unchecked")
 		HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
 		if(cart == null) {
 			cart = new HashMap<Integer, ProductCart>();
@@ -161,6 +172,7 @@ public class CartControl extends HttpServlet {
 		HttpSession session = req.getSession();
 		ProductCart productCart;
 		
+		@SuppressWarnings("unchecked")
 		HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
 		if(cart == null) {
 			cart = new HashMap<Integer, ProductCart>();
