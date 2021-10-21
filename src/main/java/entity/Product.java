@@ -56,20 +56,16 @@ public class Product {
 		this.imgSrc = imgSrc;
 	}
 
-	public String getPriceNew() {
-		Locale lcLocale = new Locale("nv", "VN");
-		NumberFormat nFormat= NumberFormat.getInstance(lcLocale);
-		return nFormat.format(priceNew) + " VNĐ";
+	public  double getPriceNew() {
+		return priceNew;
 	}
 
 	public void setPriceNew(double priceNew) {
 		this.priceNew = priceNew;
 	}
 
-	public String getPriceLast() {
-		Locale lcLocale = new Locale("nv", "VN");
-		NumberFormat nFormat= NumberFormat.getInstance(lcLocale);
-		return nFormat.format(priceLast) + " VNĐ";
+	public double getPriceLast() {
+		return priceLast;
 	}
 
 	public void setPriceLast(double priceLast) {

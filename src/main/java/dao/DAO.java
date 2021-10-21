@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -383,6 +384,54 @@ public class DAO {
 			ps.setString(5, description);
 			ps.setString(6, category);
 			ps.setString(7, pid);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
+	public int addOrder(String order_name, String address, String phone, int total) {
+		String query = "insert into orders"
+				+ "(order_name, address, phone, total)"
+				+ "values(?,?,?,?)";
+		
+		try {
+			conn = new DBContext().getConnection(); // open connect mySql
+			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, order_name);
+			ps.setString(2, address);
+			ps.setString(3, phone);
+			ps.setInt(4, total);
+			ps.executeUpdate();
+			
+			try (ResultSet rs = ps.getGeneratedKeys()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+				rs.close();
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		return 0;
+	}
+	
+	public void addOrderDetail(int order_id, int product_id, int quantity, double price) {
+		String query = "insert into order_detail"
+				+ "(order_id, product_id, quantity, price)"
+				+ "values(?,?,?,?)";
+		
+		try {
+			conn = new DBContext().getConnection(); // open connect mySql
+			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, order_id);
+			ps.setInt(2, product_id);
+			ps.setInt(3, quantity);
+			ps.setDouble(4, price);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception

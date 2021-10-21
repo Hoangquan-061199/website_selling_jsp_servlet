@@ -106,7 +106,7 @@
                         <form class="d-flex">
                             <input type="email" class="form-control" required aria-describedby="emailHelp"
                                 placeholder="Nhập email của bạn">
-                            <button class="btn btn-color" type="submit">Gửi</button>
+                            <button class="btn btn-color btn-sent" type="submit">Gửi</button>
                         </form>
                     </li>
                     <li class="fanpage__btn">

@@ -25,19 +25,19 @@
     <style><%@include file="/views/assets/css/responsive.css"%></style>
     
     <style>
-    	.header__search-icon-btn {
-	    	top: 11px;
+    	.header__search-btn {
+    		margin: 0;
+    	}
+    	
+    	.wrapper {
+    		margin: var(--height-header) 0;
     	}
     	
     	.main {
-    		border-top: 1px solid var(--bs-color);
-    	}
-    	
-    	.main:last-child {
     		border-bottom: 1px solid var(--bs-color);
     	}
     	
-    	.del-btn {
+    	.update-btn {
 	    	border: none;
 			padding: 5px 10px;
 		    border-radius: 5px;
@@ -47,11 +47,57 @@
     	
     	.price-new {
     		text-align: center;
-    		margin-top: 5px;
     	}
     	
-    	.del-btn:hover {
+    	.update-btn:hover {
     		opacity: 0.7;
+    	}
+    	
+    	.btn-sent.btn {
+   		    width: 50px;
+		    border-radius: 5px;
+		    margin: 0 0 0 5px;
+		    height: 40px;
+		    opacity: 1;
+		    font-size: 16px;
+    	}
+    	
+    	.btn-sent:hover {
+    		opacity: 0.7;
+    	}
+    	
+    	.no-product-cart {
+    		text-align: center;
+    		padding: 0 0 50px;
+    	}
+    	
+    	.icon-no-cart-product {
+    		display: flex;
+			justify-content: center;
+			padding: 50px 0;
+    	}
+    	
+    	.icon-no-cart-product svg {
+    		width: 100px;
+    		height: 100px;
+    		margin-bottom: 20px;	
+    	}
+    	
+    	.input-quantity {
+    		width: 100%;
+		    border: 1px solid var(--bs-color);
+		    background-color: var(--bs-white);
+		    border-radius: 5px;
+		    outline: none;
+		    padding-left: 10px;
+    	}
+    	
+    	.title {
+    		margin-bottom: 30px;
+    	}
+    	
+    	.no-cart {
+    		margin-top: 40px;
     	}
     </style>
 </head>
@@ -60,19 +106,26 @@
   
   	<jsp:include page="Menu.jsp"></jsp:include>
   	
-  	<div>
+  	<c:if test="${ cart == null }">
+       	<div class="container-md no-cart">
+       		<h3 class="title">Giỏ hàng của bạn</h3>
+       		<div class="icon-no-cart-product">
+	       		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-x" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M6.146 8.146a.5.5 0 0 1 .708 0L8 9.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 10l1.147 1.146a.5.5 0 0 1-.708.708L8 10.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 10 6.146 8.854a.5.5 0 0 1 0-.708z"/>
+					<path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+				</svg>
+	       	</div>
+	       	<h4 class="no-product-cart">Không có sản phẩm nào!</h4>
+       	</div>
+    </c:if>
+  	
+    <c:if test="${ cart != null }">
+  	<div class="wrapper">
   		<div class="card container-md">
 		    <div class="row">
-		        <div class="col-md-8 cart">
-		            <div class="title">
-		                <div class="row">
-		                    <div class="col">
-		                        <h4><b>Giỏ hàng</b></h4>
-		                    </div>
-		                </div>
-		            </div>
-		            <div class="row border-top border-bottom">
-		            	<c:if test="${ cart != null }">
+		        <div class="col-lg-8 cart">
+		            <div class="row">
+						<h3 class="title">Giỏ hàng của bạn</h3>
 		            		<%
 		            			HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>)request.getAttribute("cart");
 		            			for(Map.Entry<Integer, ProductCart> entry : cart.entrySet()) {
@@ -86,50 +139,47 @@
 				                    </div>
 				                    <div class="col-7">
 					                    <form class="row align-items-center" action="/ProductManage/cart/update-quantity" method="post">
-					                    	<div class="col-7 text-muted ">
+					                    	<div class="col-9 text-muted ">
 					                    		<div class="row">
 					                    			<div class="col-4">
-								                   		<input name="quantity" class="mb-0" type="number" value="<%= productCart.quantity %>">
+								                   		<input name="quantity" class="mb-0 input-quantity" type="number" value="<%= productCart.quantity %>">
 								                   		<input name="id" type="hidden" value="<%= productCart.product.getId() %>">					                        	
 						                        	</div>
 						                   			<div class="col-8 price-new"><%= productCart.product.getPriceNew() %> </div>	
 						                    		</div>
 					                        	</div>
-					                    	<div class="col-5">
-					                    		<button class="del-btn" type="submit">Cập nhật</button>
-					                    		<button class="del-btn">Xoá</button>
+					                    	<div class="col-3">
+					                    		<button class="update-btn" type="submit">Cập nhật</button>
 					                    	</div>
 					                    </form>
 				                    </div>
 				                </div>
 		            		<% } %>
-		            	</c:if>
 		            </div>
 		        </div>
-		       <%--
-		        <div class="col-md-4 summary">
-		            <div>
-		                <h5><b>Summary</b></h5>
-		            </div>
-		            <hr>
-		            <div class="row">
-		                <div class="col" style="padding-left:0;">ITEMS 3</div>
-		                <div class="col text-right">&euro; 132.00</div>
-		            </div>
-		            <form>
-		                <p>SHIPPING</p> <select>
-		                    <option class="text-muted">Standard-Delivery- &euro;5.00</option>
-		                </select>
-		                <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
-		            </form>
-		            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-		                <div class="col">TOTAL PRICE</div>
-		                <div class="col text-right">&euro; 137.00</div>
-		            </div> <button class="btn">CHECKOUT</button>
-		        </div> --%>
+	            	
+		        <div class="col-md-4">
+		        	<h3 class="title">Thông tin khách hàng</h3>
+		         	<form action="/ProductManage/cart/checkout" method="post">
+					  	<div class="mb-3">
+						    <label class="form-label">Họ tên</label>
+						    <input type="text" name="name" class="form-control">
+					  	</div>
+					  	<div class="mb-3">
+						    <label class="form-label">Số điện thoại</label>
+						    <input type="number" name="phone" class="form-control">
+					  	</div>
+					  	<div class="mb-3">
+						    <label class="form-label">Địa chỉ</label>
+						    <textarea name="address" class="form-control" rows="" cols=""></textarea>
+					  	</div>
+					  	<button type="submit" class="update-btn ">Thanh toán</button>
+					</form>  
+		        </div>
 		    </div>
 		</div>
   	</div>
+	</c:if>		            	
   
  	<jsp:include page="Footer.jsp"></jsp:include>
  

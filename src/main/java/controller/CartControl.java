@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Order;
+
 import dao.DAO;
+import entity.OrderDetail;
 import entity.Product;
 import entity.ProductCart;
 import jakarta.servlet.ServletException;
@@ -65,8 +68,13 @@ public class CartControl extends HttpServlet {
 		case "/add-to-cart":
 			addToCart(req, resp);
 			break;
+			
 		case "/update-quantity":
 			updateQuantity(req, resp);
+			break;
+			
+		case "/checkout":
+			checkout(req, resp);
 			break;
 
 		default:
@@ -74,8 +82,34 @@ public class CartControl extends HttpServlet {
 		}
 	}
 	
+	public void checkout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String phone = req.getParameter("phone");
+		String address = req.getParameter("address");
+		
+		HttpSession session = req.getSession();
+		
+		HashMap<Integer, ProductCart> cart = (HashMap<Integer, ProductCart>) session.getAttribute("cart");
+		int total = 0;
+		for(Map.Entry<Integer, ProductCart> entry: cart.entrySet()) {
+			total += entry.getValue().quantity * entry.getValue().product.getPriceNew();
+		}
+		
+		DAO dao = new DAO();
+		int orderId = dao.addOrder(name, address, phone, total);
+		
+		for(Map.Entry<Integer, ProductCart> productCart: cart.entrySet()) {
+			int pId = productCart.getValue().product.getId();
+			int pQuantity = productCart.getValue().quantity;
+			double pPrice = Double.valueOf(productCart.getValue().quantity) * productCart.getValue().product.getPriceNew();
+			
+			DAO dao1 = new DAO();
+			dao1.addOrderDetail(orderId, pId, pQuantity, pPrice);
+		}
+	}
+	
 
-	private void updateQuantity(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	private void updateQuantity(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		String quantity = req.getParameter("quantity");
 						
@@ -96,8 +130,14 @@ public class CartControl extends HttpServlet {
 			
 		} else {
 			if (cart.containsKey(Integer.parseInt(id))) {
-				productCart = cart.get(Integer.parseInt(id));
-				productCart.setQuantity(Integer.parseInt(quantity));
+				
+				if (Integer.parseInt(quantity) == 0) {
+					cart.remove(Integer.parseInt(id));
+				} else {
+					productCart = cart.get(Integer.parseInt(id));
+					productCart.setQuantity(Integer.parseInt(quantity));
+				}
+				
 				
 			} else {
 				productCart = new ProductCart(Integer.parseInt(quantity), product);
