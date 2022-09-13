@@ -26,13 +26,8 @@ public class DAO {
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -45,21 +40,15 @@ public class DAO {
 	// list phone
 	public List<Product> getPhoneProduct() {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from products join categorys"
-				+ " on categorys.id = products.category_id "
+		String query = "select * from products join categorys" + " on categorys.id = products.category_id "
 				+ "where category_id = 1";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -72,22 +61,15 @@ public class DAO {
 	// list fashion
 	public List<Product> getFashionProduct() {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from products"
-				+ " join categorys on "
-				+ "categorys.id = products.category_id "
+		String query = "select * from products" + " join categorys on " + "categorys.id = products.category_id "
 				+ "where category_id = 2";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -100,22 +82,15 @@ public class DAO {
 	// list appliances
 	public List<Product> getAppliancesProduct() {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from products "
-				+ "join categorys on "
-				+ "categorys.id = products.category_id"
+		String query = "select * from products " + "join categorys on " + "categorys.id = products.category_id"
 				+ " where category_id = 3";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -128,20 +103,14 @@ public class DAO {
 	// list suggest today
 	public List<Product> getSuggestToday() {
 		List<Product> list = new ArrayList<>();
-		String query = "SELECT * FROM products"
-				+ " ORDER BY id DESC LIMIT 10;";
+		String query = "SELECT * FROM products" + " ORDER BY id DESC LIMIT 10;";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -192,21 +161,15 @@ public class DAO {
 	// get product by cid
 	public List<Product> getProductByCID(String cid) {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from products"
-				+ " where category_id = ?";
+		String query = "select * from products" + " where category_id = ?";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, cid);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -215,25 +178,18 @@ public class DAO {
 
 		return list;
 	}
-	
 
 	// get product by pid
 	public Product getProductByID(String id) {
-		String query = "select * from products"
-				+ " where id = ?";
+		String query = "select * from products" + " where id = ?";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				return new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7));
+				return new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -245,21 +201,15 @@ public class DAO {
 	// search
 	public List<Product> searchProductByName(String valueSearch) {
 		List<Product> list = new ArrayList<>();
-		String query = "select * from products"
-				+ " where name like ?";
+		String query = "select * from products" + " where name like ?";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
 			ps.setString(1, "%" + valueSearch + "%");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1),
-						rs.getInt(2),
-						rs.getString(3),
-						rs.getString(4),
-						rs.getDouble(5),
-						rs.getDouble(6),
-						rs.getString(7)));
+				list.add(new Product(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getDouble(6), rs.getString(7)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -271,9 +221,7 @@ public class DAO {
 
 	// login
 	public Account Login(String uesrname, String password) {
-		String query = "select * from accounts"
-				+ " where username = ? "
-				+ "and password = ?";
+		String query = "select * from accounts" + " where username = ? " + "and password = ?";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
@@ -291,8 +239,7 @@ public class DAO {
 	}
 
 	public Account checkRegister(String uesrname) {
-		String query = "select * from accounts"
-				+ " where username = ?";
+		String query = "select * from accounts" + " where username = ?";
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
@@ -309,9 +256,7 @@ public class DAO {
 	}
 
 	public void Register(String user, String pass) {
-		String query = "insert accounts(username,"
-				+ " password, isSell, isAdmin)"
-				+ " values (?, ?, 0, 0)";
+		String query = "insert accounts(username," + " password, isSell, isAdmin)" + " values (?, ?, 0, 0)";
 
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
@@ -326,8 +271,7 @@ public class DAO {
 	}
 
 	public void deleteProduct(String id) {
-		String query = "delete from products"
-				+ " where id = ?";
+		String query = "delete from products" + " where id = ?";
 
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
@@ -338,15 +282,12 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
-	
-	public void addProduct(String name, String image, String pricenew, String pricelast,
-			String description, int category) {
-		String query = "insert into products"
-				+ "(name, imgSrc, priceNew, "
-				+ "priceLast, descriptions, "
-				+ "category_id)"
-				+ "values(?,?,?,?,?,?)";
-		
+
+	public void addProduct(String name, String image, String pricenew, String pricelast, String description,
+			int category) {
+		String query = "insert into products" + "(name, imgSrc, priceNew, " + "priceLast, descriptions, "
+				+ "category_id)" + "values(?,?,?,?,?,?)";
+
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
@@ -362,18 +303,12 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
-	
-	public void editProduct(String name, String image, String pricenew, String pricelast,
-			String description, String category, String pid) {
-		String query = "update products\n"
-				+ "set name = ?,\n"
-				+ "imgSrc = ?,\n"
-				+ "priceNew = ?,\n"
-				+ "priceLast = ?,\n"
-				+ "descriptions = ?,\n"
-				+ "category_Id = ?\n"
-				+ "where id = ?";
-		
+
+	public void editProduct(String name, String image, String pricenew, String pricelast, String description,
+			String category, String pid) {
+		String query = "update products\n" + "set name = ?,\n" + "imgSrc = ?,\n" + "priceNew = ?,\n"
+				+ "priceLast = ?,\n" + "descriptions = ?,\n" + "category_Id = ?\n" + "where id = ?";
+
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query);
@@ -390,12 +325,10 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int addOrder(String order_name, String address, String phone, int total) {
-		String query = "insert into orders"
-				+ "(order_name, address, phone, total)"
-				+ "values(?,?,?,?)";
-		
+		String query = "insert into orders" + "(order_name, address, phone, total)" + "values(?,?,?,?)";
+
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -404,7 +337,7 @@ public class DAO {
 			ps.setString(3, phone);
 			ps.setInt(4, total);
 			ps.executeUpdate();
-			
+
 			try (ResultSet rs = ps.getGeneratedKeys()) {
 				if (rs.next()) {
 					return rs.getInt(1);
@@ -419,12 +352,10 @@ public class DAO {
 		}
 		return 0;
 	}
-	
+
 	public void addOrderDetail(int order_id, int product_id, int quantity, double price) {
-		String query = "insert into order_detail"
-				+ "(order_id, product_id, quantity, price)"
-				+ "values(?,?,?,?)";
-		
+		String query = "insert into order_detail" + "(order_id, product_id, quantity, price)" + "values(?,?,?,?)";
+
 		try {
 			conn = new DBContext().getConnection(); // open connect mySql
 			ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -438,7 +369,7 @@ public class DAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		DAO dao = new DAO();
 		dao.editProduct("abc", "abc", "123", "321", "oke", "1", "3");

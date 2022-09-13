@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBContext {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/system_manage_products";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/pocomart";
 	static final String USER = "root";
 	static final String PASS = "Hoangquan12.";
 
